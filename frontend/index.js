@@ -1,10 +1,11 @@
 import { backend } from 'declarations/backend';
 
-const addUpdateBtn = document.getElementById('add-update-btn');
+const playerForm = document.getElementById('player-form');
 const leaderboardBtns = document.querySelectorAll('.leaderboard-btn');
 const leaderboardResults = document.getElementById('leaderboard-results');
 
-addUpdateBtn.addEventListener('click', async () => {
+playerForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
     const id = document.getElementById('player-id');
     const name = document.getElementById('player-name');
     const goals = document.getElementById('player-goals');
@@ -22,11 +23,7 @@ addUpdateBtn.addEventListener('click', async () => {
         alert('Player added/updated successfully!');
         
         // Reset form fields
-        id.value = '';
-        name.value = '';
-        goals.value = '';
-        assists.value = '';
-        passes.value = '';
+        playerForm.reset();
     } catch (error) {
         console.error('Error adding/updating player:', error);
         alert('Error adding/updating player. Please try again.');
@@ -35,6 +32,8 @@ addUpdateBtn.addEventListener('click', async () => {
 
 leaderboardBtns.forEach(btn => {
     btn.addEventListener('click', async () => {
+        leaderboardBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
         const stat = btn.dataset.stat;
         try {
             const topPlayers = await backend.getTopPlayers(stat, 5);
@@ -48,9 +47,9 @@ leaderboardBtns.forEach(btn => {
 
 function displayLeaderboard(players, stat) {
     let html = `<h3>Top 5 ${stat.charAt(0).toUpperCase() + stat.slice(1)}</h3>`;
-    html += '<table><tr><th>Name</th><th>Value</th></tr>';
-    players.forEach(player => {
-        html += `<tr><td>${player.name}</td><td>${player[stat]}</td></tr>`;
+    html += '<table><tr><th>Rank</th><th>Name</th><th>Value</th></tr>';
+    players.forEach((player, index) => {
+        html += `<tr><td>${index + 1}</td><td>${player.name}</td><td>${player[stat]}</td></tr>`;
     });
     html += '</table>';
     leaderboardResults.innerHTML = html;

@@ -4,28 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Football Stats Tracker</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap">
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
-    <h1>Football Stats Tracker</h1>
+    <header>
+        <h1>Football Stats Tracker</h1>
+    </header>
     
-    <div id="add-player">
-        <h2>Add/Update Player</h2>
-        <input type="text" id="player-id" placeholder="Player ID">
-        <input type="text" id="player-name" placeholder="Player Name">
-        <input type="number" id="player-goals" placeholder="Goals">
-        <input type="number" id="player-assists" placeholder="Assists">
-        <input type="number" id="player-passes" placeholder="Passes">
-        <button id="add-update-btn">Add/Update Player</button>
-    </div>
+    <main>
+        <section id="add-player">
+            <h2>Add/Update Player</h2>
+            <form id="player-form">
+                <input type="text" id="player-id" placeholder="Player ID" required>
+                <input type="text" id="player-name" placeholder="Player Name" required>
+                <input type="number" id="player-goals" placeholder="Goals" required>
+                <input type="number" id="player-assists" placeholder="Assists" required>
+                <input type="number" id="player-passes" placeholder="Passes" required>
+                <button type="submit" id="add-update-btn">Add/Update Player</button>
+            </form>
+        </section>
 
-    <div id="leaderboards">
-        <h2>Leaderboards</h2>
-        <button class="leaderboard-btn" data-stat="goals">Top Goal Scorers</button>
-        <button class="leaderboard-btn" data-stat="assists">Top Assisters</button>
-        <button class="leaderboard-btn" data-stat="passes">Top Passers</button>
-        <div id="leaderboard-results"></div>
-    </div>
+        <section id="leaderboards">
+            <h2>Leaderboards</h2>
+            <div class="leaderboard-controls">
+                <button class="leaderboard-btn" data-stat="goals">Top Goal Scorers</button>
+                <button class="leaderboard-btn" data-stat="assists">Top Assisters</button>
+                <button class="leaderboard-btn" data-stat="passes">Top Passers</button>
+            </div>
+            <div id="leaderboard-results"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Football Stats Tracker. All rights reserved.</p>
+    </footer>
 
     <script type="module" src="index.js"></script>
 </body>

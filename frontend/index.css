@@ -1,49 +1,98 @@
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #2ecc71;
+    --background-color: #f4f4f4;
+    --text-color: #333;
+    --border-radius: 5px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+}
+
+header {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding: 1rem;
+}
+
+main {
     max-width: 800px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 2rem;
 }
 
 h1, h2 {
-    color: #333;
+    margin-bottom: 1rem;
+}
+
+section {
+    background-color: white;
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+form {
+    display: grid;
+    gap: 1rem;
 }
 
 input, button {
-    margin: 5px;
-    padding: 5px;
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
 }
 
 button {
     cursor: pointer;
-    background-color: #4CAF50;
+    background-color: var(--secondary-color);
     color: white;
     border: none;
-    padding: 10px 15px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
+    transition: background-color 0.3s ease;
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #27ae60;
+}
+
+.leaderboard-controls {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.leaderboard-btn {
+    flex: 1;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
+    margin-top: 1rem;
 }
 
 th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
     text-align: left;
+    padding: 0.5rem;
+    border-bottom: 1px solid #ddd;
 }
 
 th {
-    background-color: #4CAF50;
+    background-color: var(--primary-color);
     color: white;
 }
 
@@ -51,13 +100,19 @@ tr:nth-child(even) {
     background-color: #f2f2f2;
 }
 
-#add-player, #leaderboards {
-    margin-top: 20px;
-    border: 1px solid #ddd;
-    padding: 20px;
-    border-radius: 5px;
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: var(--primary-color);
+    color: white;
 }
 
-.leaderboard-btn.active {
-    background-color: #45a049;
+@media (max-width: 600px) {
+    main {
+        padding: 1rem;
+    }
+
+    .leaderboard-controls {
+        flex-direction: column;
+    }
 }
