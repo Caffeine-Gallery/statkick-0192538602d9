@@ -1,0 +1,13 @@
+type Player = 
+ record {
+   assists: nat;
+   goals: nat;
+   id: text;
+   name: text;
+   passes: nat;
+ };
+service : {
+  addOrUpdatePlayer: (text, text, nat, nat, nat) -> ();
+  getPlayer: (text) -> (opt Player) query;
+  getTopPlayers: (text, nat) -> (vec Player) query;
+}
