@@ -5,15 +5,28 @@ const leaderboardBtns = document.querySelectorAll('.leaderboard-btn');
 const leaderboardResults = document.getElementById('leaderboard-results');
 
 addUpdateBtn.addEventListener('click', async () => {
-    const id = document.getElementById('player-id').value;
-    const name = document.getElementById('player-name').value;
-    const goals = parseInt(document.getElementById('player-goals').value);
-    const assists = parseInt(document.getElementById('player-assists').value);
-    const passes = parseInt(document.getElementById('player-passes').value);
+    const id = document.getElementById('player-id');
+    const name = document.getElementById('player-name');
+    const goals = document.getElementById('player-goals');
+    const assists = document.getElementById('player-assists');
+    const passes = document.getElementById('player-passes');
 
     try {
-        await backend.addOrUpdatePlayer(id, name, goals, assists, passes);
+        await backend.addOrUpdatePlayer(
+            id.value,
+            name.value,
+            parseInt(goals.value),
+            parseInt(assists.value),
+            parseInt(passes.value)
+        );
         alert('Player added/updated successfully!');
+        
+        // Reset form fields
+        id.value = '';
+        name.value = '';
+        goals.value = '';
+        assists.value = '';
+        passes.value = '';
     } catch (error) {
         console.error('Error adding/updating player:', error);
         alert('Error adding/updating player. Please try again.');
