@@ -1,8 +1,28 @@
 import { backend } from 'declarations/backend';
+import { premierLeagueData } from './premData.js';
 
 const playerForm = document.getElementById('player-form');
 const leaderboardBtns = document.querySelectorAll('.leaderboard-btn');
 const leaderboardResults = document.getElementById('leaderboard-results');
+
+async function initializeData() {
+    try {
+        for (const player of premierLeagueData) {
+            await backend.addOrUpdatePlayer(
+                player.id,
+                player.name,
+                player.goals,
+                player.assists,
+                player.passes
+            );
+        }
+        console.log('Premier League data initialized successfully');
+    } catch (error) {
+        console.error('Error initializing Premier League data:', error);
+    }
+}
+
+window.addEventListener('load', initializeData);
 
 playerForm.addEventListener('submit', async (e) => {
     e.preventDefault();
